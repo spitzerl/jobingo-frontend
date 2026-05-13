@@ -1,16 +1,65 @@
-# React + Vite
+# Jobingo Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend React/Vite de l'application Jobingo.
 
-Currently, two official plugins are available:
+## Installation en local (dev)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Prérequis
 
-## React Compiler
+- Node.js 20+
+- npm
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Démarrage
 
-## Expanding the ESLint configuration
+```bash
+npm ci
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+L'application est ensuite disponible sur l'URL affichée par Vite (par défaut `http://localhost:5173`).
+
+### Démarrage avec Docker Compose (dev)
+
+Le projet peut aussi être lancé en local dans un conteneur Node via `docker-compose.dev.yml`.
+
+Prérequis :
+
+- Docker compose
+- Le fichier `.env` copié et configuré à partir de `.env.example`
+
+```bash
+docker compose -f docker-compose.dev.yml up
+```
+
+Le frontend est accessible sur `http://localhost:5173`.
+
+Pour arrêter :
+
+```bash
+docker compose -f docker-compose.dev.yml down
+```
+
+## Scripts utiles
+
+| Commande | Description |
+| --- | --- |
+| `npm run dev` | Lance le serveur de développement Vite |
+| `npm run build` | Génère le build de production dans `dist/` |
+| `npm run preview` | Sert localement le build de production |
+| `npm run lint` | Lance ESLint |
+
+## Build Docker automatique (release)
+
+Un workflow GitHub Actions publie automatiquement l'image Docker sur GHCR à chaque release GitHub publiée :
+
+- Workflow : `.github/workflows/release-ghcr.yml`
+- Trigger : `release` de type `published`
+- Registry : `ghcr.io`
+- Image : `ghcr.io/<owner>/<repo>` (nom du repo en minuscules)
+- Tags publiés : tag de la release + `latest`
+
+### Publier une nouvelle image
+
+1. Créer une release GitHub (avec un tag, par ex. `v1.2.0`).
+2. Le workflow build l'image avec le `Dockerfile` du repo.
+3. L'image est poussée automatiquement sur GHCR avec les tags `v1.2.0` et `latest`.
