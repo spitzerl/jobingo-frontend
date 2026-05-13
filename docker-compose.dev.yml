@@ -1,9 +1,7 @@
 services:
   frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: npm run dev
+    image: node:20-alpine
+    working_dir: /app
     volumes:
       - .:/app
       - /app/node_modules
@@ -11,3 +9,4 @@ services:
       - "5173:5173"
     env_file:
       - .env
+    command: sh -c "npm ci && npm run dev -- --host"
