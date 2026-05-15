@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  frontend:
+    image: ghcr.io/spitzerl/jobingo-frontend:latest
+    environment:
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:3000/api}
+    ports:
+      - "80:80"
+    networks:
+      - jobingo
+    restart: unless-stopped
+
+  backend:
+    image: ghcr.io/spitzerl/jobingo-backend:latest
+    environment:
+      DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-jobingo}
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    networks:
+      - jobingo
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-jobingo}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - jobingo
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  jobingo:
+    driver: bridge

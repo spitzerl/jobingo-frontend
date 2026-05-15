@@ -12,6 +12,13 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <title>Jobingo</title>
+        <script>
+          // Load runtime config (set by envsubst in Dockerfile)
+          fetch('./config.json')
+            .then(r => r.json())
+            .then(config => { window.__CONFIG__ = config; })
+            .catch(e => console.warn('Runtime config not found, using defaults', e));
+        </script>
     </head>
     <body>
         <div id="root"></div>
