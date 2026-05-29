@@ -4,6 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import ProfileSection from "@/components/settings/ProfileSection";
 import PasswordSection from "@/components/settings/PasswordSection";
 import DeleteAccountSection from "@/components/settings/DeleteAccountSection";
+import AppearanceSection from "@/components/settings/AppearanceSection";
 
 export default function SettingsPage() {
   const { email, editPassword, deleteAccount, getProfile, updateProfile } =
@@ -137,6 +138,8 @@ export default function SettingsPage() {
         setPwdData={setPwdData}
         onPasswordChange={handlePasswordChange}
       />
+
+      <AppearanceSection />
 
       <DeleteAccountSection
         showDeleteConfirm={showDeleteConfirm}
