@@ -13,7 +13,7 @@ export default function PriorityBadge({ priority, highlight }) {
 
   return (
     <span
-      className={`inline-flex items-center justify-center rounded-full w-6 h-6 text-[11px] font-semibold ${colors[priority] || "bg-gray-100 text-gray-600"}`}
+      className={`priority-badge priority-badge--${priority} inline-flex items-center justify-center rounded-full w-6 h-6 text-[11px] font-semibold ${colors[priority] || "bg-gray-200 text-gray-700 border border-gray-300"}`}
     >
       <HighlightedText text={priority} highlight={highlight} />
     </span>
