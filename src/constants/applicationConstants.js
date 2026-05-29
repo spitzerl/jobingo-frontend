@@ -2,42 +2,59 @@ export const STATUS_OPTIONS = [
   {
     value: "En attente",
     color:
-      "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 border border-amber-200 dark:border-amber-800",
+      "bg-amber-200 text-amber-900 dark:bg-amber-500/30 dark:text-amber-100 border border-amber-300 dark:border-amber-500/60",
   },
   {
     value: "Entretien",
     color:
-      "bg-sky-100 text-sky-700 dark:bg-sky-900/20 dark:text-sky-400 border border-sky-200 dark:border-sky-800",
+      "bg-sky-200 text-sky-900 dark:bg-sky-500/30 dark:text-sky-100 border border-sky-300 dark:border-sky-500/60",
+  },
+  {
+    value: "Test technique",
+    color:
+      "bg-violet-200 text-violet-900 dark:bg-violet-500/30 dark:text-violet-100 border border-violet-300 dark:border-violet-500/60",
   },
   {
     value: "Acceptée",
     color:
-      "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800",
+      "bg-emerald-200 text-emerald-900 dark:bg-emerald-500/30 dark:text-emerald-100 border border-emerald-300 dark:border-emerald-500/60",
   },
   {
     value: "Refusée",
     color:
-      "bg-rose-100 text-rose-700 dark:bg-rose-900/20 dark:text-rose-400 border border-rose-200 dark:border-rose-800",
+      "bg-rose-200 text-rose-900 dark:bg-rose-500/30 dark:text-rose-100 border border-rose-300 dark:border-rose-500/60",
   },
   {
     value: "Abandonnée",
     color:
-      "bg-slate-100 text-slate-600 dark:bg-slate-800/50 dark:text-slate-400 border border-slate-200 dark:border-slate-700",
+      "bg-slate-200 text-slate-800 dark:bg-slate-700/40 dark:text-slate-100 border border-slate-300 dark:border-slate-500/60",
   },
   {
     value: "Relancée",
     color:
-      "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800",
+      "bg-indigo-200 text-indigo-900 dark:bg-indigo-500/30 dark:text-indigo-100 border border-indigo-300 dark:border-indigo-500/60",
   },
 ];
+
+const STATUS_ALIASES = {
+  Accepté: "Acceptée",
+  Refusé: "Refusée",
+  Abandonné: "Abandonnée",
+  "Test Technique": "Test technique",
+  "test technique": "Test technique",
+};
+
+export const normalizeStatus = (status) =>
+  STATUS_ALIASES[status] || status;
 
 export const STATUS_ORDER = {
   Acceptée: 0,
   Entretien: 1,
-  Relancée: 2,
-  "En attente": 3,
-  Refusée: 4,
-  Abandonnée: 5,
+  "Test technique": 2,
+  Relancée: 3,
+  "En attente": 4,
+  Refusée: 5,
+  Abandonnée: 6,
 };
 
 export const INACTIVE_STATUSES = ["Refusée", "Abandonnée"];

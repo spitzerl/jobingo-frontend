@@ -3,6 +3,7 @@ import api from "@/api";
 import {
   STATUS_ORDER,
   INACTIVE_STATUSES,
+  normalizeStatus,
 } from "@/constants/applicationConstants";
 import {
   getLatestRelaunchDate,
@@ -86,8 +87,8 @@ export default function useApplications() {
       }
 
       if (key === "status") {
-        valA = STATUS_ORDER[valA] ?? 99;
-        valB = STATUS_ORDER[valB] ?? 99;
+        valA = STATUS_ORDER[normalizeStatus(valA)] ?? 99;
+        valB = STATUS_ORDER[normalizeStatus(valB)] ?? 99;
         return direction === "asc" ? valA - valB : valB - valA;
       }
 
@@ -116,11 +117,15 @@ export default function useApplications() {
     let result = [...sortedApplications];
 
     if (filters.hideInactive) {
-      result = result.filter((app) => !INACTIVE_STATUSES.includes(app.status));
+      result = result.filter(
+        (app) => !INACTIVE_STATUSES.includes(normalizeStatus(app.status)),
+      );
     }
 
     if (filters.status !== "All") {
-      result = result.filter((app) => app.status === filters.status);
+      result = result.filter(
+        (app) => normalizeStatus(app.status) === filters.status,
+      );
     }
 
     if (filters.priority !== "All") {
