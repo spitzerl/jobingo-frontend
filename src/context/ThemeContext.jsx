@@ -12,20 +12,32 @@ export const ThemeProvider = ({ children }) => {
       ? "dark"
       : "light";
   });
+  const [highContrast, setHighContrast] = useState(() => {
+    const storedHighContrast = localStorage.getItem("highContrast");
+    return storedHighContrast === "true";
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);
+    root.classList.toggle("high-contrast", highContrast);
     localStorage.setItem("theme", theme);
-  }, [theme]);
+    localStorage.setItem("highContrast", String(highContrast));
+  }, [theme, highContrast]);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
+  const toggleHighContrast = () => {
+    setHighContrast((prev) => !prev);
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, toggleTheme, highContrast, toggleHighContrast }}
+    >
       {children}
     </ThemeContext.Provider>
   );

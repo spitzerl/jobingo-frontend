@@ -71,6 +71,46 @@
         --ring: 250 84% 66%;
     }
 
+    .high-contrast {
+        --background: 0 0% 100%;
+        --foreground: 222 47% 2%;
+        --card: 0 0% 100%;
+        --card-foreground: 222 47% 2%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222 47% 2%;
+        --primary: 250 84% 45%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 210 40% 96%;
+        --secondary-foreground: 222 47% 2%;
+        --muted: 210 40% 95%;
+        --muted-foreground: 215 20% 20%;
+        --accent: 250 84% 92%;
+        --accent-foreground: 250 84% 25%;
+        --border: 214.3 31.8% 65%;
+        --input: 214.3 31.8% 65%;
+        --ring: 250 84% 45%;
+    }
+
+    .dark.high-contrast {
+        --background: 222 47% 1%;
+        --foreground: 0 0% 100%;
+        --card: 222 47% 3%;
+        --card-foreground: 0 0% 100%;
+        --popover: 222 47% 1%;
+        --popover-foreground: 0 0% 100%;
+        --primary: 250 84% 75%;
+        --primary-foreground: 222 47% 1%;
+        --secondary: 217.2 32.6% 12%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 217.2 32.6% 12%;
+        --muted-foreground: 210 20% 90%;
+        --accent: 250 84% 28%;
+        --accent-foreground: 250 84% 96%;
+        --border: 217.2 32.6% 40%;
+        --input: 217.2 32.6% 40%;
+        --ring: 250 84% 85%;
+    }
+
     body {
         @apply bg-background text-foreground;
     }
