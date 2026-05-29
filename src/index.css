@@ -70,6 +70,10 @@
         --input: 217.2 32.6% 17%;
         --ring: 250 84% 66%;
     }
+
+    body {
+        @apply bg-background text-foreground;
+    }
 }
 
 @layer utilities {
